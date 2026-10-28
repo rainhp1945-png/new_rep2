@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>🐾 Ветклиника</h1>
+<p>Владельцев: {{ owners_count }}</p>
+<p>Животных: {{ animals_count }}</p>
+<p>Приёмов: {{ receptions_count }}</p>
+<p>Услуг: {{ services_count }}</p>
+
+<h2>Последние приёмы</h2>
+<table border="1" cellpadding="8">
+    <tr><th>Дата</th><th>Животное</th><th>Владелец</th><th>Сумма</th></tr>
+    {% for r in last_receptions %}
+    <tr>
+        <td>{{ r.Date|date:"d.m.Y H:i" }}</td>
+        <td>{{ r.animal.Nickname }}</td>
+        <td>{{ r.animal.owner.FIO }}</td>
+        <td>{{ r.Sum }} ₽</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">Приёмов пока нет</td></tr>
+    {% endfor %}
+</table>
+</body>
+</html>
